@@ -84,7 +84,6 @@ class Arquivo {
 		
 		//informações do boleto
 		$detalhes->setNossoNumero($boleto['nosso_numero']);
-		$detalhes->setDigitoNossoNumero($boleto['digito_nosso_numero']);
 		$detalhes->setEspecie($boleto['especie']);
 		$detalhes->setAceite($boleto['aceite']);
 		$detalhes->setCodigoInstrucao($boleto['codigo_instrucao']);

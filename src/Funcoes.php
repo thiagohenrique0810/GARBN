@@ -214,30 +214,6 @@ class Funcoes {
 	}
 	
 	/**
-	 * retorna o digito verificador do nosso numero com o numero da carteira
-	 * @param unknown $nosso_numero
-	 * @return Ambigous <string, number>
-	 */
-	public function digito_verificador_nosso_numero($nosso_numero) {
-	    //die($nosso_numero);
-		$modulo = self::modulo11($nosso_numero, 7);
-		
-		//die(print_r($modulo));
-		
-		$digito = 11 - $modulo['resto'];
-	
-		if ($digito == 10) {
-			$dv = "P";
-		} elseif($digito == 11) {
-			$dv = 0;
-		} else {
-			$dv = $digito;
-		}
-	
-		return $dv;
-	}
-	
-	/**
 	 * calculo do modulo 11 do digito veirificador
 	 * @param unknown $num
 	 * @param number $base
@@ -272,7 +248,31 @@ class Funcoes {
 		}
 		return $result;
 	}
-	
+
+    public function Mod10($number){
+        $numLength = strlen($number)-1;
+        $fator = 2;
+        $sum = 0;
+
+        for ($i=$numLength; $i >= 0; $i--) { 
+
+        	$peso = $i + $fator;
+        	$item = substr(strrev($number), $i, 1);
+
+        	$result = $peso * $item;
+        	$sum += $result;
+        }
+
+        $rest = $sum % 11;
+
+        if($rest == 0 || $rest == 1) {
+        	return 0;
+        }else {
+        	return (11 - $rest);
+        }
+    }
+
+
 	/**
 	 * metodo para resumir o texto
 	 * ESSA NÃO É UMA FORMA IDEAL

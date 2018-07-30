@@ -308,27 +308,9 @@ class Detalhes extends Funcoes implements IFuncoes {
      */
     public function getDigitoNossoNumero()
     {
-        return $this->digito_nosso_numero;
-    }
-
-    /**
-     * @param mixed $digito_nosso_numero
-     *
-     * @return self
-     */
-    public function setDigitoNossoNumero($digito_nosso_numero)
-    {
-        if(!empty($digito_nosso_numero)) {
-            if($this->valid_tamanho_campo($digito_nosso_numero, 1)) {
-                $this->digito_nosso_numero = $digito_nosso_numero;
-                
-                return $this;
-            }else {
-                throw new Exception('Error: Quantidade de caracteres do campo digito nosso numero invalido');
-            }
-        }else {
-            throw new Exception('Error: O campo o campo digito nosso numero nao pode ser vazio');
-        }
+        $result = $this->Mod10($this->getNossoNumero());
+        
+        return $result;
     }
 
     /**
@@ -355,7 +337,7 @@ class Detalhes extends Funcoes implements IFuncoes {
     public function setDataSegundoDesconto($data_segundo_desconto)
     {
         if(!empty($data_segundo_desconto)) {
-            if($this->valid_tamanho_campo($data_segundo_desconto, 6)) {
+            if($this->valid_tamanho_campo($data_segundo_desconto, 6, 6)) {
                 $this->data_segundo_desconto = $this->add_zeros($data_segundo_desconto, 6);
                 
                 return $this;
@@ -363,7 +345,7 @@ class Detalhes extends Funcoes implements IFuncoes {
                 throw new Exception('Error: Quantidade de caracteres do campo data segundo desconto invalido');
             }
         }else {
-            throw new Exception('Error: O campo o campo data segundo desconto nao pode ser vazio');
+            $this->data_segundo_desconto = $this->add_zeros('', 6);
         }
     }
 
@@ -1375,10 +1357,9 @@ class Detalhes extends Funcoes implements IFuncoes {
             $this->getCodigoMoeda() . 
             $this->getNumeroSequencialRegistro();
 
-        //testes
-        //die((string)$linha);
-        //$qtdLinha = (string)strlen($linha);
-        //die($qtdLinha);
+        /*die((string)$linha);
+        $qtdLinha = (string)strlen($linha);
+        die($qtdLinha);*/
 
 		return (string)$this->valid_linha($linha);
 	}
