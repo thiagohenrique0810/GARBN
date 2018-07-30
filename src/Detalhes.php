@@ -243,7 +243,7 @@ class Detalhes extends Funcoes implements IFuncoes {
      */
     public function getFiller3()
     {
-        $result = $this->add_zeros('', 4);
+        $result = $this->montar_branco('', 4);
         return $result;
     }
 
@@ -264,7 +264,7 @@ class Detalhes extends Funcoes implements IFuncoes {
     {
         if(!empty($numero_controle)) {
             if($this->valid_tamanho_campo($numero_controle, 25, 25)) {
-                $this->numero_controle = $this->montar_branco($numero_controle, 25);
+                $this->numero_controle = $this->montar_branco($numero_controle, 25, 'right');
 
                 return $this;
             }else {
