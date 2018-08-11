@@ -5,9 +5,9 @@ include 'src/Arquivo.php';
 //configurando o arquivo de remessa
 $config['razao_social'] = 'TOP PROTECAO';
 $config['codigo_usuario'] = '';
-$config['data_gravacao'] = '270718';
-$config['agencia'] = '4001';
-$config['conta'] = '9345';
+$config['data_gravacao'] = '271238';
+$config['agencia'] = '4121';
+$config['conta'] = '1245';
 $config['conta_dv'] = '7';
 
 $arquivo = new Arquivo();
@@ -33,7 +33,7 @@ for ($i = 0; $i < 5; $i++) {
 	$boleto['data_emissao_titulo'] 			= '161115';
 	$boleto['valor_abatimento'] 			= '00';
 	$boleto['tipo_inscricao_pagador'] 		= 'CPF';//CPF OU CNPJ
-	$boleto['numero_inscricao'] 			= '09191332400';//NUMERO DO CPF/CNPJ DO PAGADOR
+	$boleto['numero_inscricao'] 			= '09191312300';//NUMERO DO CPF/CNPJ DO PAGADOR
 	$boleto['nome_pagador'] 				= 'thiago henrique pequeno da silva';
 	$boleto['endereco_pagador'] 			= 'RUA PADRE ROMA, 343';
 	$boleto['uf_pagador'] 					= 'PE';

@@ -77,7 +77,6 @@ class Arquivo {
 		
 		//informações da conta
 		$detalhes->setAgenciaCedente($boleto['agencia']);
-		$detalhes->setAgenciaCobradora($boleto['agencia']);
 		$detalhes->setContaCliente($boleto['conta']);
 		$detalhes->setDigitoConta($boleto['conta_dv']);
 		$detalhes->setCarteira($boleto['carteira'], $boleto['carteira_tipo_emissor']);
@@ -158,8 +157,8 @@ class Arquivo {
 		$trailler = new Trailler();
 		$trailler->setNumero_sequencial_regsitro($numero_sequencial++);
 		$this->setTrailler($trailler);
-		$dados .= $this->getTrailler()->montar_linha();
-		
+		$dados .= $this->getTrailler()->montar_linha() . "\n";
+
 		return $dados;
 	}
 	

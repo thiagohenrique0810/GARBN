@@ -582,7 +582,7 @@ class Detalhes extends Funcoes implements IFuncoes {
      */
     public function getNumeroBanco()
     {
-        return '004';
+        return '000';
     }
 
     /**
@@ -590,27 +590,8 @@ class Detalhes extends Funcoes implements IFuncoes {
      */
     public function getAgenciaCobradora()
     {
-        return $this->agencia_cobradora;
-    }
-
-    /**
-     * @param mixed $agencia_cobradora
-     *
-     * @return self
-     */
-    public function setAgenciaCobradora($agencia_cobradora)
-    {
-        if(!empty($agencia_cobradora)) {
-            if($this->valid_tamanho_campo($agencia_cobradora, 4)) {
-                $this->agencia_cobradora = $this->add_zeros($agencia_cobradora, 4);
-                
-                return $this;
-            }else {
-                throw new Exception('Error: Quantidade de caracteres do campo agencia cobradora invalido');
-            }
-        }else {
-            throw new Exception('Error: O campo o campo agencia cobradora nao pode ser vazio');
-        }
+        $result = $this->add_zeros('', 4);
+        return $result;
     }
 
     /**
@@ -1122,7 +1103,7 @@ class Detalhes extends Funcoes implements IFuncoes {
     {
         if(!empty($cidade_sacado)) {
             if(strlen($cidade_sacado) > 15) {
-                $cidade_sacado = $this->resume_texto($cidade_sacado);
+                $cidade_sacado = $this->resume_texto($cidade_sacado, 15);
             }
             
             if($this->valid_tamanho_campo($cidade_sacado, 15, 15)) {
@@ -1130,10 +1111,11 @@ class Detalhes extends Funcoes implements IFuncoes {
                 
                 return $this;
             }else {
+                echo $cidade_sacado . '<br>';
                 throw new Exception('Error: Quantidade de caracteres do campo cidade endereco sacado invalido');
             }
         }else {
-            throw new Exception('Error: O campo o campo cidade endereco sacado nao pode ser vazio');
+            $this->cidade_sacado = $this->montar_branco('', 15, 'right');
         }
     }
 
@@ -1153,7 +1135,7 @@ class Detalhes extends Funcoes implements IFuncoes {
     public function setUfSacado($uf_sacado)
     {
         if(!empty($uf_sacado)) {
-            if($this->valid_tamanho_campo($uf_sacado, 2)) {
+            if($this->valid_tamanho_campo($uf_sacado, 2, 2)) {
                 $this->uf_sacado = $uf_sacado;
                 
                 return $this;
@@ -1161,7 +1143,7 @@ class Detalhes extends Funcoes implements IFuncoes {
                 throw new Exception('Error: Quantidade de caracteres do campo uf/estado endereco sacado invalido');
             }
         }else {
-            throw new Exception('Error: O campo o campo uf/estado endereco sacado nao pode ser vazio');
+            $this->uf_sacado = $this->montar_branco('', 2);
         }
     }
 

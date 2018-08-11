@@ -70,12 +70,16 @@ class HeaderLabel extends Funcoes implements IFuncoes {
 	 * @param string $nome_empresa
 	 */
 	public function setNome_empresa($nome_empresa) {
-		$length = (int) strlen($nome_empresa);
-		
-		if($length > 0 && $length <= 30) {
-			$this->nome_empresa = $this->montar_branco($this->removeAccents($nome_empresa), 30, 'right');
+		if(!empty($nome_empresa)) {
+			$nome_empresa = $this->resume_texto($nome_empresa, 30);
+			
+            if($this->valid_tamanho_campo($nome_empresa, 30, 30)) {
+				$this->nome_empresa = $this->montar_branco($this->removeAccents($nome_empresa), 30, 'right');
+			}else {
+				throw new Exception('Error: Quantidade de caracteres do campo nome da empresa invalido');
+			}
 		}else {
-			throw new Exception('Error - Tamanho de texto invalido, para o nome da empresa.');
+			throw new Exception('Error: O campo nome da empresa nao pode ser vazio');
 		}
 	}
 	
